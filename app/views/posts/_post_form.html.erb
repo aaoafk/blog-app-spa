@@ -1,3 +1,24 @@
-<%= form_with model: @post do |form| %>
-  form.label :title
-<% end %>
+<div class="container">
+  <h1>New Post</h1>
+</div>
+
+<div class="container">
+  <%= form_with model: @post do |post_form| %>
+    <div>
+      <%= post_form.label :title, 'Post Title:' %>
+      <%= post_form.text_field :title %>
+    </div>
+
+    <div>
+      <%= post_form.label :body, 'Post Body:' %>
+      <%= post_form.text_area :body, size: '60x10' %>
+    </div>
+
+    <div>
+      <%= post_form.label :tags, 'Post Tags:' %>
+      <%= post_form.text_field :tags %>
+    </div>
+
+    <%= post_form.submit %>
+  <% end %>
+</div>

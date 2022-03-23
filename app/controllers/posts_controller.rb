@@ -5,15 +5,22 @@ class PostsController < ApplicationController
   end
 
   def new 
-    #TODO: Implement
+    @post = Post.new
   end
 
   def create 
-    #TODO: Implement
+    @post = Post.new(post_params)
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url, notice: 'Post created!'}
+      else
+        format.html { redirect_to new_posts_url, notice: 'Post could not be created!', status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
-    #TODO: Implement
+    @post = Post.find_by(id: params[:id])
   end
 
   def edit
