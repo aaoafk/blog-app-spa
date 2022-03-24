@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to posts_url, notice: 'Post created!'}
       else
-        format.html { redirect_to new_posts_url, notice: 'Post could not be created!', status: :unprocessable_entity }
+        format.html { redirect_to new_post_url, notice: 'Post could not be created!', status: :unprocessable_entity }
       end
     end
   end
@@ -28,10 +28,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    update_status = @post.update( post_params )
     respond_to do |format|
-      if update_status 
-        format.html { redirect_to @post, notice: 'Post successfully updated!' }
+      if @post.update( post_params ) 
+        format.html { redirect_to post_url( @post ), notice: 'Post successfully updated!' }
       else
         format.html { redirect_to edit_post_url( @post ), notice: 'Post could not be updated', status: :unprocessable_entity }
       end
@@ -39,6 +38,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post successfully destroyed' }
     end
