@@ -1,9 +1,5 @@
 <div class="container">
-  <h1>New Post</h1>
-</div>
-
-<div class="container">
-  <%= form_with model: @post do |post_form| %>
+  <%= form_with(model: post) do |post_form| %>
     <div>
       <%= post_form.label :title, 'Post Title:' %>
       <%= post_form.text_field :title %>

@@ -317,3 +317,48 @@ Processing by PostsController#index as HTML
 Completed 200 OK in 491ms (Views: 435.0ms | ActiveRecord: 5.1ms | Allocations: 48257)
 
 
+Started GET "/" for 127.0.0.1 at 2022-03-23 18:45:03 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:7
+  Rendered collection of posts/_post.html.erb [2 times] (Duration: 2.1ms | Allocations: 2728)
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.2ms | Allocations: 9517)
+  Rendered layout layouts/application.html.erb (Duration: 12.4ms | Allocations: 9608)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.9ms | Allocations: 16272)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: <article id=<%= "article_#{p.id}" %>>
+    2:   <h2><%= p.title %></h2>
+    3:   <p><%= p.body %></p>
+    4:   <p><%= p.tags %></p>
+  
+app/views/posts/_post.html.erb:1
+app/views/posts/index.html.erb:7
+Started GET "/" for 127.0.0.1 at 2022-03-23 18:46:34 -0400
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:7
+  Rendered collection of posts/_post.html.erb [2 times] (Duration: 0.9ms | Allocations: 246)
+  Rendered posts/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1352)
+  Rendered layout layouts/application.html.erb (Duration: 67.8ms | Allocations: 36035)
+Completed 200 OK in 71ms (Views: 69.8ms | ActiveRecord: 0.1ms | Allocations: 37238)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2022-03-23 18:46:37 -0400
+Processing by PostsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/_post_form.html.erb (Duration: 14.9ms | Allocations: 7294)
+  Rendered posts/new.html.erb within layouts/application (Duration: 15.9ms | Allocations: 7573)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 9891)
+Completed 200 OK in 20ms (Views: 19.1ms | ActiveRecord: 0.0ms | Allocations: 10377)
+
+

@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :set_post, only: %i[ show edit update destroy ]
+
   def index
     @posts = Post.all
   end
@@ -20,22 +22,33 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
   end
 
   def edit
-    #TODO: Implement
   end
 
   def update
-    #TODO: Implement
+    update_status = @post.update( post_params )
+    respond_to do |format|
+      if update_status 
+        format.html { redirect_to @post, notice: 'Post successfully updated!' }
+      else
+        format.html { redirect_to edit_post_url( @post ), notice: 'Post could not be updated', status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
-    #TODO: Implement
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Post successfully destroyed' }
+    end
   end
 
   private
+  def set_post
+    @post = Post.find( params[:id] )
+  end
+
   def post_params
     params.require(:post).permit( :title, :body, :tags )
   end

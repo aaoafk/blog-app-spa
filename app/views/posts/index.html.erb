@@ -4,11 +4,5 @@
 </div>
 
 <div class="container">
-  <% @posts.each do |p|%>
-    <article id=<%= "article_#{p.id}" %>>
-      <h2><%= p.title %></h2>
-      <p><%= p.body %></p>
-      <p><%= p.tags %></p>
-    </article>
-  <% end %>
+  <%= render @posts %>
 </div>
