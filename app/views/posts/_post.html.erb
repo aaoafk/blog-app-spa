@@ -1,7 +1,5 @@
-<div class="container">
-  <article id=<%= "article_#{post.id}" %>>
-    <h2><%= link_to "#{post.title}", controller: 'posts', action: 'show', id: post.id %></h2>
-    <p><%= post.body %></p>
-    <p><%= post.tags %></p>
-  </article>
-</div>
+<article id=<%= "article_#{post.id}" %>>
+  <h2><%= post.title %></h2>
+  <p><%= post.body %></p>
+  <p><%= post.tags %></p>
+</article>
