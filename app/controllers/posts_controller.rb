@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     update_status = @post.update( post_params )
     respond_to do |format|
       if update_status 
-        format.html { redirect_to @post, notice: 'Post successfully updated!' }
+        format.html { redirect_to post_url( @post ), notice: 'Post successfully updated!' }
       else
         format.html { redirect_to edit_post_url( @post ), notice: 'Post could not be updated', status: :unprocessable_entity }
       end
