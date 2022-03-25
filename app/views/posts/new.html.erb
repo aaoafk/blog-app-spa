@@ -1,6 +1,8 @@
-<div class="container">
-  <h1> New post </h1>
-  <hr>
-</div>
+<%= turbo_frame_tag 'post_form' do %>
+  <div class="container" style="margin-left: 2rem; margin-right: 2rem;">
+    <h1 style="margin-top: 2rem;"> ## New Post ## </h1>
+    <hr style="margin: 2rem;">
+  </div>
 
-<%= render "post_form", post: @post %>
+  <%= render "post_form", post: @post %>
+<% end %>

@@ -1,9 +1,13 @@
 <div class="container">
   <h1 style='margin-top: 2rem;'>The POSTS!</h1>
   <hr style='margin-top: 2rem; margin-bottom: 2rem;'>
-  <%= link_to 'New Post', new_post_path %>
+  <%= turbo_frame_tag 'post_form' do %>
+    <%= link_to 'New Post', new_post_path %>
+  <% end %>
 </div>
 
-<div class="container">
-  <%= render @posts %>
-</div>
+<%= turbo_frame_tag 'posts' do %> 
+  <div class="container">
+    <%= render @posts %>
+  </div>
+<% end %>
