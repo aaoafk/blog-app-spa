@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id( post ) do %>
   <div class="container">
     <article> 
-      <h2 style="font-size: xxx-large; padding-bottom: 1rem;"><%= link_to "#{post.title.titleize}", post_path(post) %></h2>
+      <h2 style="font-size: xxx-large; padding-bottom: 1rem;"><%= link_to "#{post.title.titleize}", post_path(post), data: { turbo_frame: "_top" } %></h2>
       <p style="font-size: large; padding-bottom: 1rem;"><%= post.body %></p>
       <p style="font-size: medium; font-weight: bold; padding-top: 1rem; padding-bottom: 1rem; font-style: italic;"><%= post.tags %></p>
       <p style="font-size: small; font-style: italic;">Posted <%= time_ago_in_words( post.created_at, include_seconds: true) %> ago</p>

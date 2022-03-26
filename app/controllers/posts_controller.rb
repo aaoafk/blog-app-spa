@@ -23,6 +23,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
   end
 
   def edit
