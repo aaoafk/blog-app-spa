@@ -1,12 +1,12 @@
 <%= turbo_frame_tag dom_id( post ) do %>
-  <article> 
-    <h2><%= link_to "#{post.title.titleize}", post_path(post) %></h2>
-    <p><%= post.body %></p>
-    <p><%= post.tags %></p>
+  <div class="container">
+    <article> 
+      <h2><%= link_to "#{post.title.titleize}", post_path(post) %></h2>
+      <p><%= post.body %></p>
+      <p><%= post.tags %></p>
 
-    <div class="container">
-      <%= link_to 'Edit Post', edit_post_path( post ) %>
-      <%= link_to 'Destroy Post', method: :delete %>
-    </div>
-  </article>
+      <%= link_to 'Edit Post', edit_post_path( post ), class: "btn btn--primary" %>
+      <%= button_to 'Delete Post', post_path( post ), method: :delete,  class: "btn btn--dark", style: "margin-top: 0.5rem;" %>
+    </article>
+  </div>
 <% end %>

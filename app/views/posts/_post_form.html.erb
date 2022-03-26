@@ -1,20 +1,20 @@
 <div class="container">
   <%= form_with(model: post) do |post_form| %>
-    <div>
+    <div style="margin-top: 1rem; margin-bottom: 1rem;">
       <%= post_form.label :title, 'Post Title:' %>
       <%= post_form.text_field :title %>
     </div>
 
-    <div>
+    <div style="margin-top: 1rem; margin-bottom: 1rem;">
       <%= post_form.label :body, 'Post Body:' %>
       <%= post_form.text_area :body, size: '60x10' %>
     </div>
 
-    <div>
+    <div style="margin-top: 1rem; margin-bottom: 1rem;">
       <%= post_form.label :tags, 'Post Tags:' %>
       <%= post_form.text_field :tags %>
     </div>
 
-    <%= post_form.submit %>
+    <%= post_form.submit class: "btn btn--create" %>
   <% end %>
 </div>

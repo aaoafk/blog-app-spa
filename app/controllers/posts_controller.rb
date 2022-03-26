@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
+        format.turbo_stream
         format.html { redirect_to posts_url, notice: 'Post created!'}
       else
         format.html { redirect_to new_post_url, notice: 'Post could not be created!', status: :unprocessable_entity }
