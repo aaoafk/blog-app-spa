@@ -14,9 +14,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = :success_create }
         format.html { redirect_to posts_url, notice: 'Post created!'}
       else
+        format.turbo_stream 
         format.html { redirect_to new_post_url, notice: 'Post could not be created!', status: :unprocessable_entity }
       end
     end
@@ -24,7 +25,7 @@ class PostsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream { render turbo_stream: turbo_stream.update( @post ), locals: @post, partials: 'posts/post' }
       format.html
     end
   end
@@ -45,8 +46,8 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to posts_url, notice: 'Post successfully destroyed' }
+      format.turbo_stream { flash.now[:notice] = 'Post deleted!' }
+      format.html { redirect_to posts_url, notice: 'Post deleted!' }
     end
   end
 

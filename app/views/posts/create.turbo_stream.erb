@@ -1,7 +1,16 @@
-<%= turbo_stream.prepend 'posts', @post %>
+<% if flash[:notice] == :success_create %>
+  <%= turbo_stream.prepend "posts", @post %>
 
-<%= turbo_stream.replace "new_post" do %>
-  <%= turbo_frame_tag 'new_post' do %>
-    <%= link_to 'New Post', new_post_path, class: "btn btn--primary", style: "margin-left: 45%;" %>
-  <% end %>
-<% end %>
+  <%= turbo_stream.replace "new_post" do %>
+    <%= turbo_frame_tag "new_post" do %>
+      <%= link_to("New Post", new_post_path, class: "btn btn--primary", style: "margin-left: 45%;") %>
+                                                                      <% end %>
+                                                                      <% end %>
+                                                                      <% else %>
+                                                                          <%= turbo_stream.replace "new_post" do %>
+                                                                          <%= turbo_frame_tag "new_post" do %>
+                                                                          <%= link_to("New Post", new_post_path, class: "btn btn--primary", style: "margin-left: 45%;") %>
+                                                                                                                                          <% end %>
+                                                                                                                                          <% end %>
+                                                                                                                                          <% end %>
+
