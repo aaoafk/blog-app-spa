@@ -12,10 +12,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    # TODO: Handle building the association with the tag?
-    @post = Post.new(post_params)
+    # Defer tag construction to the imp
+    @post = Post.new(post_params.except(:tag_names))
     respond_to do |format|
       if @post.save
+        TagConstructionImp.new.tag_builder(@post, params[:post][:tag_names])
         format.turbo_stream { flash.now[:notice] = :success_create }
         format.html { redirect_to posts_url, notice: 'Post created!'}
       else
@@ -59,6 +60,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit( :title, :body, :tags )
+    params.require(:post).permit(:title, :body, :tag_names)
   end
 end

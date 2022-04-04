@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_22_192515) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_04_175515) do
   create_table "posts", force: :cascade do |t|
     t.text "title"
     t.text "body"
     t.text "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.text "title"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable"
   end
 
 end
