@@ -1,23 +1,25 @@
-class PostsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :set_post, only: %i[ show edit update destroy ]
+class PostsController < ApplicationController
+  before_action :set_post, only: %i[show edit update destroy]
 
   def index
     @posts = Post.all.order(created_at: :desc)
   end
 
-  def new 
+  def new
     @post = Post.new
   end
 
-  def create 
+  def create
+    # TODO: Handle building the association with the tag?
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
         format.turbo_stream { flash.now[:notice] = :success_create }
         format.html { redirect_to posts_url, notice: 'Post created!'}
       else
-        format.turbo_stream 
+        format.turbo_stream
         format.html { redirect_to new_post_url, notice: 'Post could not be created!', status: :unprocessable_entity }
       end
     end
@@ -25,20 +27,19 @@ class PostsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.update( @post ), locals: @post, partials: 'posts/post' }
+      format.turbo_stream { render turbo_stream: turbo_stream.update(@post), locals: @post, partials: 'posts/post' }
       format.html
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
-      if @post.update( post_params ) 
-        format.html { redirect_to post_url( @post ), notice: 'Post successfully updated!' }
+      if @post.update(post_params)
+        format.html { redirect_to post_url(@post), notice: 'Post successfully updated!' }
       else
-        format.html { redirect_to edit_post_url( @post ), notice: 'Post could not be updated', status: :unprocessable_entity }
+        format.html { redirect_to edit_post_url(@post), notice: 'Post could not be updated', status: :unprocessable_entity }
       end
     end
   end
@@ -52,8 +53,9 @@ class PostsController < ApplicationController
   end
 
   private
+
   def set_post
-    @post = Post.find( params[:id] )
+    @post = Post.find params[:id]
   end
 
   def post_params
