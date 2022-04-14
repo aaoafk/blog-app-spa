@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :posts
-  resources :tags, only: %i[index create update destroy]
+  resources :tags, only: %i[index show create update destroy]
 
   root 'posts#index'
 end

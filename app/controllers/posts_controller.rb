@@ -12,13 +12,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    # Defer tag construction to the imp
     @post = Post.new(post_params.except(:tag_names))
     respond_to do |format|
       if @post.save
-        TagConstructionImp.new.tag_builder(@post, params[:post][:tag_names])
+        TagConstructionImp.new(post: @post, post_params: post_params).associate_post_to_tags
         format.turbo_stream { flash.now[:notice] = :success_create }
-        format.html { redirect_to posts_url, notice: 'Post created!'}
+        format.html { redirect_to posts_url, notice: 'Post created!' }
       else
         format.turbo_stream
         format.html { redirect_to new_post_url, notice: 'Post could not be created!', status: :unprocessable_entity }
