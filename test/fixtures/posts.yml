@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyText
-  body: MyText
-  tags: MyText
+  id: 1
+  title: The Title
+  body: The Body
+  tags: the_tag
 
 two:
-  title: MyText
-  body: MyText
-  tags: MyText
+  id: 2
+  title: The Other Title
+  body: The Other Body
+  tags: the_other_tag

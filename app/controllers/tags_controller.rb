@@ -7,7 +7,12 @@ class TagsController < ApplicationController
   def update; end
 
   # TODO: Show will display all the articles that this tag is linked to
-  def show; end
+  def show
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
+  end
 
   # TODO: Implement TagsController#create
   def create; end
@@ -18,7 +23,7 @@ class TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find(id: params[:id])
+    @tag = Tag.find params[:id]
   end
 
   # TODO: Figure out what to do with TagsController#destroy_tags
