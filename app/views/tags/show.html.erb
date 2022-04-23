@@ -1,1 +1,14 @@
-<h2><%= "#{ @tag.title } with id #{ @tag.id }" %></h2>
+<div class="container">
+  <%= link_to 'Back to posts', posts_path, class: "btn btn--light", style: "margin-bottom: 2rem; margin-top: 2rem;"%>
+  <%= turbo_frame_tag dom_id( @tag ) do %>
+    <h1 style="color: hsl(10, 73%, 54%)"><%= "#{ @tag.title }" %></h2>
+    <hr/><span>is linked to these articles:</span>
+    <ul class="container">
+      <li>test</li>
+      <li>test</li>
+      <li>test</li>
+    </ul>
+    <!-- TODO: Route helpers didn't generate for some reason so just manual for edit and delete -->
+    <%= link_to %>
+  <% end %>
+</div>

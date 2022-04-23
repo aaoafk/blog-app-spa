@@ -10,7 +10,9 @@
       </h2>
       <p style="font-size: large; padding-bottom: 1rem;"><%= post.body %></p>
       <span id="tags" style="font-size: medium; font-weight: bold; padding-top: 1rem; padding-bottom: 1rem; font-style: italic;">
-        <%= post.tags.to_a.map { |tag| link_to("#{tag.title}", tag_url(tag)) }.join(' ').html_safe %>
+        <% post.tags.to_a.map do |tag| %>
+          <%= sanitize((link_to "#{tag.title}", tag_url(tag), data: { turbo_frame: "_top" }), tags: [ 'a' ], attributes: %w( href data-turbo-frame style )) %>
+        <% end %>
       </span>
 
       <p style="font-size: small; font-style: italic;">created <%= time_ago_in_words( post.created_at, include_seconds: true) %> ago</p>

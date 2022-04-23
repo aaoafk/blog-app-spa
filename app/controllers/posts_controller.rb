@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.created_at_desc
   end
 
   def new
@@ -36,7 +36,8 @@ class PostsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(post_params.except(:tag_names))
+        TagConstructionImp.new(post: @post, post_params: post_params).associate_post_to_tags
         format.html { redirect_to post_url(@post), notice: 'Post successfully updated!' }
       else
         format.html { redirect_to edit_post_url(@post), notice: 'Post could not be updated', status: :unprocessable_entity }

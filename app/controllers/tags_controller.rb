@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
-  before_action :set_tag, only: :show
+  before_action :set_tag_and_articles, only: :show
+
   def index; end
 
   def update; end
@@ -9,7 +10,6 @@ class TagsController < ApplicationController
   # TODO: Show will display all the articles that this tag is linked to
   def show
     respond_to do |format|
-      format.turbo_stream
       format.html
     end
   end
@@ -22,7 +22,7 @@ class TagsController < ApplicationController
 
   private
 
-  def set_tag
+  def set_tag_and_articles
     @tag = Tag.find params[:id]
   end
 

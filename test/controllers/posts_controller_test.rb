@@ -60,25 +60,35 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select('span', id: tags)
   end
 
-  # TODO: Implement these tests
-  test 'delete the post from show Posts#index' do
+  test 'delete the post from Posts#index' do
     get '/posts'
     assert_equal 200, status
 
     assert_difference 'Post.count', -1 do
       delete "/posts/#{@post.id}", xhr: true
     end
-
-    # TODO: Actual status returned is 302, make it make sense
-    assert_equal 200, status
   end
 
+
+  # TODO: Fix updating the post from Posts#index
   test 'updating the post from Posts#index' do
-    skip 'updating the post from Posts#index waiting to be implemented'
+    get '/posts'
+    assert_equal 200, status
+
+    new_post = Post.new(title: 'the new title', body: 'the new body', tags: 'new tags')
+
+    patch "/posts/#{@post.id}", params: new_post
+
+    assert_response :success
   end
 
+
+  # TODO: Do we need this test anyways prob need a system test
   test 'delete the post from Posts#show' do
-    skip 'deleting the post from Posts#show waiting to be implemented'
+    get post_url(@post.id), xhr: true
+    assert_equal 200, status
+
+    delete "/posts/#{@post.id}", xhr: true
   end
 
   test 'update the post from Posts#show' do
