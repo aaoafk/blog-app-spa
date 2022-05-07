@@ -2,9 +2,7 @@
   <%= link_to 'Back to posts', posts_path, class: "btn btn--light", style: "margin-bottom: 2rem; margin-top: 2rem;"%>
   <%= turbo_frame_tag dom_id( @tag ) do %>
     <div style="display: inline;" class="container" >
-      <h1 style="color: hsl(10, 73%, 54%)"><%= "#{ @tag.title }" %></h2>
-        <%= link_to 'Edit tag', { controller: 'tags', action: 'update' }, class: "btn btn--primary", style: "margin: 1rem 0" %>
-        <%= button_to 'Delete tag', { controller: 'tags', method: :delete }, class: "btn btn--dark" %>
+      <%= render @tag %>
     </div>
     <div class="container">
       <h2><em><%= @tag.title %> is linked to <%= @posts.size %> posts...</em></h2>
