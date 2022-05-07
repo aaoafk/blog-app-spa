@@ -1,14 +1,15 @@
 <div class="container">
   <%= link_to 'Back to posts', posts_path, class: "btn btn--light", style: "margin-bottom: 2rem; margin-top: 2rem;"%>
   <%= turbo_frame_tag dom_id( @tag ) do %>
-    <h1 style="color: hsl(10, 73%, 54%)"><%= "#{ @tag.title }" %></h2>
-    <hr/><span>is linked to these articles:</span>
-    <ul class="container">
-      <li>test</li>
-      <li>test</li>
-      <li>test</li>
-    </ul>
-    <!-- TODO: Route helpers didn't generate for some reason so just manual for edit and delete -->
-    <%= link_to %>
+    <div style="display: inline;" class="container" >
+      <h1 style="color: hsl(10, 73%, 54%)"><%= "#{ @tag.title }" %></h2>
+        <%= link_to 'Edit tag', { controller: 'tags', action: 'update' }, class: "btn btn--primary", style: "margin: 1rem 0" %>
+        <%= button_to 'Delete tag', { controller: 'tags', method: :delete }, class: "btn btn--dark" %>
+    </div>
+    <div class="container">
+      <h2><em><%= @tag.title %> is linked to <%= @posts.size %> posts...</em></h2>
+      <hr/>
+      <%= render @posts %>
+    </div>
   <% end %>
 </div>
