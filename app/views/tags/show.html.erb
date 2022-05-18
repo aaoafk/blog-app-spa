@@ -1,13 +1,9 @@
 <div class="container">
-  <%= link_to 'Back to posts', posts_path, class: "btn btn--light", style: "margin-bottom: 2rem; margin-top: 2rem;"%>
   <%= turbo_frame_tag dom_id( @tag ) do %>
-    <div style="display: inline;" class="container" >
-      <%= render @tag %>
-    </div>
     <div class="container">
-      <h2><em><%= @tag.title %> is linked to <%= @posts.size %> posts...</em></h2>
+      <h2><em><%= "#{@tag.title}" %>...</em></h2>
       <hr/>
-      <%= render @posts %>
+      <%= render @post %>
     </div>
   <% end %>
 </div>

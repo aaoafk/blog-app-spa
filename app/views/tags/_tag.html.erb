@@ -2,8 +2,8 @@
   <div class="container posts-info-toast">
   </div>
   <div class="container">
-    <h1><button style="color: hsl(10, 73%, 54%)"><%= "#{tag.title}" %></button>
-      is linked to <%= pluralize(2, 'article')... %>
+    <h1>
+      <%= link_to "Tag: #{tag.title}", tag %>
     </h1>
     <hr style="margin: 1rem 0; "/>
   </div>

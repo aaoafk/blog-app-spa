@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_04_175515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable"
+    t.index ["title"], name: "unique_titles", unique: true
   end
 
 end

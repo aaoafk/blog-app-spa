@@ -13,7 +13,12 @@ class TagConstructionImp
   def associate_post_to_tags
     the_tags = extract_tags(post_params[:tag_names])
     the_tags.each do |tag|
-      @post.tags.create({ title: tag })
+      t = Tag.find_by(title: tag)
+      if t.nil?
+        @post.tags.create({ title: tag })
+      else
+        @post.tags.build({ id: t.id, title: t.title })
+      end
     end
   end
 

@@ -1,34 +1,35 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
-  before_action :set_tag_and_articles, only: :show
+  before_action :set_tag_and_posts, only: :show
 
-  def index; end
+  def index
+    @tags = Tag.created_at_desc
+  end
 
   def update; end
 
-  # TODO: Show will display all the articles that this tag is linked to
   def show
     respond_to do |format|
       format.html
     end
   end
 
-  # TODO: Implement TagsController#create
   def create; end
 
-  # TODO: Implement TagsController#destroy
-  def destroy; end
+  def destroy
+    @tag.destroy
+    respond_to do |format|
+      format.turbo_stream { flash.now[:notice] = 'Tag deleted!' }
+      format.html { flash.now[:notice] = 'Tag deleted!' }
+    end
+  end
 
   private
 
-  def set_tag_and_articles
+  def set_tag_and_posts
     @tag = Tag.find params[:id]
+    @post = Post.includes(:tags).where('posts.id = ?', @tag.taggable_id).references(:posts)
   end
 
-  # TODO: Figure out what to do with TagsController#destroy_tags
-  # and TagsController#update_tags
-  def destroy_tags(post); end
-
-  def update_tags(post); end
 end

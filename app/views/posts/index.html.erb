@@ -1,5 +1,6 @@
 <div class="container">
   <h1 style='margin-top: 2rem;'>badbl0g</h1>
+  <%= link_to 'The Tags', tags_path, class: "btn btn--primary", style: "margin: 1rem 0;", data: { turbo_frame: "_top" } %>
   <hr style='margin-top: 2rem; margin-bottom: 2rem;'>
   <%= turbo_frame_tag 'new_post' do %>
     <%= link_to 'New Post', new_post_path, class: "btn btn--primary", style: "margin-left: 45%;" %>
