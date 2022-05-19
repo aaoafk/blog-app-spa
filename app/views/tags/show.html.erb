@@ -1,9 +1,10 @@
 <div class="container">
   <%= turbo_frame_tag dom_id( @tag ) do %>
     <div class="container">
-      <h2><em><%= "#{@tag.title}" %>...</em></h2>
-      <hr/>
+      <h2 style="margin: 2rem 0;"><em><%= "#{@tag.title}" %> is linked to...</em></h2>
+      <hr style="margin-bottom: 2rem;" />
       <%= render @post %>
     </div>
   <% end %>
+  <%= link_to "<- Back to posts", posts_path, class: 'btn btn--primary', style: 'margin-left: 40%;' %>
 </div>

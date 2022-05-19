@@ -1,9 +1,23 @@
 <div class="container">
-  <h1 style='margin-top: 2rem;'>badbl0g</h1>
-  <%= link_to 'The Tags', tags_path, class: "btn btn--primary", style: "margin: 1rem 0;", data: { turbo_frame: "_top" } %>
+  <h1 style='margin-top: 2rem;'>jab blog</h1>
+
+  <%= button_to 'Logout',
+  destroy_user_session_url,
+  class: "btn btn--primary",
+  method: :delete,
+  form: { data: { turbo: "false" } } %>
+
+</div>
+
+<div class="container">
   <hr style='margin-top: 2rem; margin-bottom: 2rem;'>
+  <%= link_to 'The Tags',
+   tags_path,
+   class: "btn btn--primary",
+   style: "margin: 1rem 0;", data: { turbo_frame: "_top" } %>
+
   <%= turbo_frame_tag 'new_post' do %>
-    <%= link_to 'New Post', new_post_path, class: "btn btn--primary", style: "margin-left: 45%;" %>
+    <%= link_to 'New Post', new_post_path, class: "btn btn--primary", style: "margin-left: 40%;" %>
   <% end %>
 </div>
 
